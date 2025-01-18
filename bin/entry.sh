@@ -51,7 +51,14 @@ build() {
 }
 
 run() {
-    exec ./"$BUILD"/zoomsdk
+    # Start the socket client in the background
+    python3 ./socket_client.py &
+
+    # Give it a moment to initialize
+    sleep 2
+
+    # Run the C++ application
+    exec ./"$BUILD"/zoomsdk RawAudio -t
 }
 
 build && run;

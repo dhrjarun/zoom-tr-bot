@@ -41,7 +41,12 @@ RUN apt-get update  \
     pkgconf \
     tar \
     unzip \
-    zip
+    zip \
+    python3 \
+    python3-pip
+
+# Install assemblyAi
+RUN pip3 install assemblyai
 
 # Install ALSA
 RUN apt-get install -y libasound2 libasound2-plugins alsa alsa-utils alsa-oss
@@ -64,6 +69,11 @@ RUN git clone --depth 1 https://github.com/Microsoft/vcpkg.git \
 FROM deps AS build
 
 WORKDIR $cwd
+
+# Copy the socket client
+# COPY socket_client.py /usr/local/bin/
+# RUN chmod +x /usr/local/bin/socket_client.py
+
 ENTRYPOINT ["/tini", "--", "./bin/entry.sh"]
 
 

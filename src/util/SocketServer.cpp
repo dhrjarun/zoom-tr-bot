@@ -86,7 +86,7 @@ int SocketServer::writeBuf(const char* buf, int len) {
     auto ret = write(m_dataSocket, buf, len);
     if (ret == -1) {
         Log::error("failed to write data");
-        exit(EXIT_FAILURE);
+        // exit(EXIT_FAILURE);
     }
 
     return 0;
@@ -96,7 +96,7 @@ int SocketServer::writeBuf(const unsigned char* buf, int len) {
     auto ret = write(m_dataSocket, buf, len);
     if (ret == -1) {
         Log::error("failed to write data");
-        exit(EXIT_FAILURE);
+        // exit(EXIT_FAILURE);
     }
 
     return 0;
